@@ -1,0 +1,73 @@
+---
+title: "Growth chamber conditions"
+author: "Romain Garrigues"
+date: "12-12-2019"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+# Humidity
+
+## Experimentals conditions
+
+In growth chamber we have *Fagus* and *Populus*. The goal of this experiment is to study the Bud-Burst timing under optimal conditions (40-60% of Humidity and 22°C), after different timing of leaves-out and bud sampling for Transcriptomic and metabolomic analysises. So, we need to be bteween 40%-60% in growth chamber, for the relative himidity. The temperature needs to be at **22°C**. 
+
+## Data
+
+```{r}
+# path = "./HOBOware/test_dataset.csv" or dataset <- read.csv("./HOBOware/test_dataset.csv", sep=",")
+
+dataset <- read.csv("./HOBOware/test_dataset.csv", sep=",")
+```
+
+They are the commands to open the source of the datasel. 
+
+The next part is to see the complet dataset, then to select only the dataset from the row 3909 to the end (December month). I created the "december_dataset" to focus only on the last month.
+
+```{r}
+
+View(dataset)
+
+View(dataset[-c(1:3908), ])
+
+december_datase <- dataset[-c(1:3908), ]
+
+```
+
+## Method
+
+The dataset is done, now we need to obtain the graph for the humidity in all the month of december. To do that we are going to use the package **ggplot**.
+
+```{r}
+# install.packages("ggplot2")
+# library("ggplot2")
+
+# format(as.Date(december_datase$Date,format="%m/%d/%y"), format = "%d")
+
+plot(format(as.Date(december_datase$Date,format="%m/%d/%y"), format = "%d"), december_datase$RH, xlab= "Date", ylab ="RH", abline(h=c(40, 60),col="red"))
+```
+
+
+
+## TODO 
+
+- [x] Plot RH chart 
+- [x] add 60 & 40 RH lines 
+- [ ] Use GGplot for better visualisation
+- [ ] Remove the first row of the CSV file
+- [ ] add small multiples
+
+
+## Results
+
+```{r}
+
+```
+
